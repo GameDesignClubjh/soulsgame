@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05957a9313d5e6347bb9d26bd60f5fc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MovementSpeed: 150
+  MovementSpeed: 2.5
   Friction: 10
   MaxHealth: 100
 --- !u!114 &-676482122283499677
@@ -118,10 +118,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea36804e0bbb1e44a9eb80c9c0830537, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Controller: {fileID: 0}
-  MaxDashCooldown: 1.5
-  MaxDashDuration: 0.3
-  DashSpeedMultiplier: 4
+  Controller: {fileID: -3992522117664230320}
+  MaxDashCooldown: 0.25
+  MaxDashDuration: 0.2
+  DashSpeedMultiplier: 4.5
+  dashCooldown: 0
 --- !u!50 &-7381707137792254709
 Rigidbody2D:
   serializedVersion: 5

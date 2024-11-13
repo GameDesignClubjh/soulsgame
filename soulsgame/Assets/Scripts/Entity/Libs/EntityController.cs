@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class EntityController : MonoBehaviour
 {
+    [Header("Requires an adjacent RigidBody2d")]
+    [Space]
+
     [Header("Physical Properties")]
-    public float MovementSpeed;
-    public float Friction;
+    public float MovementSpeed = 2.5f;
+    public float Friction = 10f;
 
     [Header("Entity Properties")]
-    public float MaxHealth;
+    public float MaxHealth = 100f;
 
-    [NonSerialized]
+
     private float health;
-
 
     private Vector2 queuedVelocity;
     private Rigidbody2D rb;

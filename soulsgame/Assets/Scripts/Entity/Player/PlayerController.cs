@@ -7,11 +7,11 @@ public class PlayerController : MonoBehaviour
     public EntityController Controller;
 
     [Header("Player Properties")]
-    public float MaxDashCooldown;
-    public float MaxDashDuration;
-    public float DashSpeedMultiplier;
+    public float MaxDashCooldown = 0.25f;
+    public float MaxDashDuration = 0.2f;
+    public float DashSpeedMultiplier = 4.5f;
 
-    [NonSerialized]
+    [HideInInspector]
     public float dashCooldown = 0;
 
 
