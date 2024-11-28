@@ -8,11 +8,12 @@ public class EntityController : MonoBehaviour
     [Space]
 
     [Header("Physical Properties")]
-    public float MovementSpeed = 2.5f;
-    public float Friction = 10f;
+    public FloatAttribute MovementSpeed = 2.5f;
+    public FloatAttribute Friction = 10f;
 
     [Header("Entity Properties")]
-    public float MaxHealth = 100f;
+    public FloatAttribute MaxHealth = 100f;
+
 
 
     private float health;
@@ -63,7 +64,7 @@ public class EntityController : MonoBehaviour
     /// <param name="velocity">The target velocity</param>
     public void Move(Vector2 velocity)
     {
-        queuedVelocity += velocity * MovementSpeed;
+        queuedVelocity += velocity * MovementSpeed.Get();
     }
 
     // Apply the queued movement every frame.
@@ -90,13 +91,13 @@ public class EntityController : MonoBehaviour
     // Apply friction forces.
     void ApplyFriction(float delta)
     {
-        rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, Vector2.zero, delta * Friction);
+        rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, Vector2.zero, delta * Friction.Get());
     }
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        health = MaxHealth;
+        health = MaxHealth.Get();
     }
 
     void FixedUpdate()

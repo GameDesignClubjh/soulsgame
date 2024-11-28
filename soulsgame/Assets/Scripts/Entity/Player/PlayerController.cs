@@ -7,13 +7,13 @@ public class PlayerController : MonoBehaviour
     public EntityController Controller;
 
     [Header("Player Properties")]
-    public float MaxDashCooldown = 0.25f;
-    public float MaxDashDuration = 0.2f;
-    public float DashSpeedMultiplier = 4.5f;
+    public FloatAttribute MaxDashCooldown = 0.25f;
+    public FloatAttribute MaxDashDuration = 0.2f;
+    public FloatAttribute DashSpeedMultiplier = 4.5f;
+
 
     [HideInInspector]
     public float dashCooldown = 0;
-
 
     private float dashTime = 0;
     private Vector2 dashDirection;
@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
     void WhileDashing(float delta)
     {
         dashTime -= delta;
-        Controller.Move(dashDirection * DashSpeedMultiplier);
+        Controller.Move(dashDirection * DashSpeedMultiplier.Get());
     }
 
     // Checks when the player is dashing.
@@ -62,8 +62,8 @@ public class PlayerController : MonoBehaviour
         float vertical = Input.GetAxis("Vertical");
 
         dashDirection = new Vector2(horizontal, vertical).normalized;
-        dashTime = MaxDashDuration;
-        dashCooldown = MaxDashCooldown;
+        dashTime = MaxDashDuration.Get();
+        dashCooldown = MaxDashCooldown.Get();
     }
 
 
