@@ -1,5 +1,6 @@
 using System;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EntityController : MonoBehaviour
@@ -9,7 +10,8 @@ public class EntityController : MonoBehaviour
 
     [Header("Physical Properties")]
     public FloatAttribute MovementSpeed = 2.5f;
-    public FloatAttribute Friction = 10f;
+    public float Friction = 10f;
+   
 
     [Header("Entity Properties")]
     public FloatAttribute MaxHealth = 100f;
@@ -18,7 +20,9 @@ public class EntityController : MonoBehaviour
 
     private float health;
 
+
     private Vector2 queuedVelocity;
+    private Vector2 queuedFriction;
     private Rigidbody2D rb;
     
 
@@ -64,17 +68,32 @@ public class EntityController : MonoBehaviour
     /// <param name="velocity">The target velocity</param>
     public void Move(Vector2 velocity)
     {
-        queuedVelocity += velocity * MovementSpeed.Get();
+        queuedVelocity = velocity * MovementSpeed.Get();
+        Debug.Log(queuedVelocity);
+
+        
     }
 
     // Apply the queued movement every frame.
     void ApplyMovement()
     {
-        if (queuedVelocity == Vector2.zero) {
-            return;
+        if (queuedVelocity != Vector2.zero)
+        {
+            rb.linearVelocity = queuedVelocity;
         }
+        else
+        { 
+              
+            Debug.Log("working");
+          
+        }
+           
+        
+        
 
-        // Queue movement must be higher than current velocity to apply.
+
+        /// Queue movement must be higher than current velocity to apply.
+       /* 
         if (math.abs(queuedVelocity.x) >= math.abs(rb.linearVelocity.x))
         {
             rb.linearVelocityX = queuedVelocity.x;
@@ -86,12 +105,20 @@ public class EntityController : MonoBehaviour
         }
 
         queuedVelocity = Vector2.zero;
+       */
+      
+      
+        
+            
+        
+       
     }
 
-    // Apply friction forces.
+    // Apply friction forces
     void ApplyFriction(float delta)
     {
-        rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, Vector2.zero, delta * Friction.Get());
+        //rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, Vector2.zero, delta*Friction.Get());
+        rb.linearDamping = Friction;
     }
 
     void Start()
@@ -102,7 +129,10 @@ public class EntityController : MonoBehaviour
 
     void FixedUpdate()
     {
-        ApplyFriction(Time.fixedDeltaTime);
+
+       
+       // ApplyFriction(Time.fixedDeltaTime);
         ApplyMovement();
+        Debug.Log(Time.fixedDeltaTime);
     }
 }
