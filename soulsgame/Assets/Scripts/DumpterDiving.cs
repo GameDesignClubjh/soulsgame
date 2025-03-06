@@ -2,10 +2,12 @@ using UnityEngine;
 
 public class DumpterDiving : MonoBehaviour
 {
+
+    public GameObject Raccoon;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        InvokeRepeating("SpawnRaccoon", 1.0f, 2.0f);
     }
 
     // Update is called once per frame
@@ -31,5 +33,14 @@ public class DumpterDiving : MonoBehaviour
                 }
             }
         }
+    }
+
+    void SpawnRaccoon()
+    {
+        float randX = Random.Range(-3.0f, 3.0f);
+        float randY = Random.Range(-3.0f, 3.0f);
+        Vector2 cords = new Vector2(randX, randY);  
+
+        Instantiate(Raccoon, cords, Raccoon.transform.rotation);
     }
 }
