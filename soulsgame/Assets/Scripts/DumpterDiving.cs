@@ -13,22 +13,25 @@ public class DumpterDiving : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0))// checks if the player has left-clicked
         {
-            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition).origin,
+            //sends an invisible line from the camera to the cursor
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition).origin, 
                 Camera.main.ScreenPointToRay(Input.mousePosition).direction);
-            if (hit)
+            if (hit) //checks if the line hit something
             {
                
-                if (hit.collider.tag == "Raccoon")
+                if (hit.collider.tag == "Raccoon") //checks if it hit a raccoon
                 {
                     Debug.Log("grah");
                     
-                    Destroy(hit.collider.gameObject);
+                    Destroy(hit.collider.gameObject); //supposed to destroy raccons, does not do that.
                 }
-                else if(hit.collider.tag == "Trash")
+                else if(hit.collider.tag == "Trash")//checks if the line hit trash
                 {
-                    Transform trash = hit.collider.gameObject.transform;
+                    Transform trash = hit.collider.gameObject.transform;// sets the hit position as a transform
+
+                    //sets the position of the trash to world coordinates of the cursor.S
                     trash.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 5.0f));
                 }
             }
