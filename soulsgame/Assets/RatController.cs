@@ -8,6 +8,7 @@ public class RatController : MonoBehaviour
    
    public List<GameObject> targets = new List<GameObject>();
     public List<Vector2> checkPoints = new List<Vector2>();
+   private GameObject chosenTarget;
     int targetNum = 0;
     int counter = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -19,7 +20,7 @@ public class RatController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Vector2.Distance(transform.position, chosenTarget.transform.position);
     }
 
     void TrackToTarget()
