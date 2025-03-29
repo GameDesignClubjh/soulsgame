@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class DumpterDiving : MonoBehaviour
 {
-
     public GameObject Raccoon;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,6 +19,7 @@ public class DumpterDiving : MonoBehaviour
                 Camera.main.ScreenPointToRay(Input.mousePosition).direction);
             if (hit) //checks if the line hit something
             {
+
                
                 if (hit.collider.tag == "Raccoon") //checks if it hit a raccoon
                 {
@@ -27,14 +27,8 @@ public class DumpterDiving : MonoBehaviour
                     
                     Destroy(hit.collider.gameObject); //supposed to destroy raccons, does not do that.
                 }
-                else if(hit.collider.tag == "Trash")//checks if the line hit trash
-                {
-                    Transform trash = hit.collider.gameObject.transform;// sets the hit position as a transform
-
-                    //sets the position of the trash to world coordinates of the cursor.S
-                    trash.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 5.0f));
-                }
             }
+ 
         }
     }
 
