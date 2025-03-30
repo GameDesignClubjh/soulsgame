@@ -6,11 +6,13 @@ TagManager:
   tags:
   - Raccoon
   - Trash
+  - stove
+  - ingredients
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - wall
   - Water
   - UI
   - 
